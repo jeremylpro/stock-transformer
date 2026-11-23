@@ -1,0 +1,27 @@
+{
+  "stage": "backtest",
+  "artifact": "reports/equity_tech_only.png",
+  "artifact_sha256": "452009a723df19d60c9780ba306ad26d1dcdef6a21af303d918804103b1c3655",
+  "config_hash": "1c5d2e7d897d2ba52148ca8a273e290959079c9e3abba67f1003ced42c751e9c",
+  "input_hashes": {
+    "config.demo.yaml": "1c5d2e7d897d2ba52148ca8a273e290959079c9e3abba67f1003ced42c751e9c",
+    "artifacts/predictions_test.parquet": "67cc8b49a51a542c7d07a2b5e9948905d68884be93c2463729d64d300e43e08f",
+    "reports/splits.json": "07c189766654c11167262341e580eb92ab79637b9ffc18e0986138f6b2edf46a"
+  },
+  "library_versions": {
+    "python": "3.12.16",
+    "platform": "macOS-15.3-x86_64-i386-64bit",
+    "pandas": "2.2.0",
+    "numpy": "1.26.3",
+    "yfinance": "1.8.0",
+    "sklearn": "1.4.0",
+    "xgboost": "2.0.3",
+    "ta": "0.11.0",
+    "backtesting": "0.6.0",
+    "transformers": "4.47.1",
+    "torch": "2.2.2"
+  },
+  "created_utc": "2026-11-23T06:21:16.427803+00:00",
+  "featureset": "tech_only",
+  "algo": "xgb"
+}

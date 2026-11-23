@@ -45,7 +45,7 @@ This implementation follows `docs/product-design.md` and
 - **Report** (`src/reporting.py`): `reports/summary.md`, metrics JSON, split
   ranges, top-15 importances, net-of-cost backtest table and known limitations.
 
-All 42 tests in `tests/` pass, including the leakage suite from §10.
+All 46 tests in `tests/` pass, including the leakage suite from §10.
 
 ---
 
@@ -149,6 +149,16 @@ The generated `reports/summary.md` carries an explicit **OFFLINE / DEMO DATA
 WARNING**. Do not interpret its metrics as market evidence: the synthetic
 sentiment is independent of returns by construction.
 
+### Results included in this repository
+
+The checked-in `reports/` directory is the output of the demo run above, because
+no `FINNHUB_API_KEY` was available in the build environment. It contains real
+prices, FinBERT scores over synthetic headlines, all six models, both baselines,
+all three backtests and the plots. Every file is stamped with the demo warning
+and with the config/hash manifests, so it is reproducible and clearly not a
+real-news result. Running the pipeline with `config.yaml` and a Finnhub key
+overwrites `reports/` with real results.
+
 ---
 
 ## Leakage guardrails
@@ -240,7 +250,7 @@ src/
   backtest.py                   next-bar-open long/cash backtest
   reporting.py                  summary.md and plots
   pipeline.py                   stage orchestration and manifests
-tests/                          42 unit/integration/leakage tests
+tests/                          46 unit/integration/leakage tests
 tests/fixtures/                 deterministic leakage and smoke datasets
 scripts/generate_fixtures.py    regenerate test fixtures
 scripts/generate_demo_news.py   synthetic demo headlines

@@ -182,8 +182,29 @@ def _headline_scores(
     if actual_backend != backend_hint:
         LOG.info("Resolved sentiment backend %s -> %s", backend_hint, actual_backend)
         if not known.empty:
-            LOG.info("Rescoring cache rows for consistency")
-        scores = scores[scores["backend"] == actual_backend].copy()
+            # The cached rows were produced by a different scorer, so they are
+            # not comparable with the fresh batch. Rescore them instead of
+            # silently dropping them (which would leave those headlines NaN).
+            LOG.info("Rescoring %d cached headlines with %s", len(known), actual_backend)
+            rescored = sentiment.score_headlines(
+                known["headline"].tolist(),
+                model_name=cfg.sentiment.model,
+                batch_size=cfg.sentiment.batch_size,
+                max_tokens=cfg.sentiment.max_tokens,
+                backend=actual_backend,
+            )
+            rescored = rescored.copy()
+            rescored["headline"] = known["headline"].to_numpy()
+            rescored["backend"] = actual_backend
+            rescored["model"] = (
+                cfg.sentiment.model if actual_backend == "finbert" else "vader"
+            )
+            scores = pd.concat(
+                [scores[scores["backend"] == actual_backend], rescored],
+                ignore_index=True,
+            )
+        else:
+            scores = scores[scores["backend"] == actual_backend].copy()
 
     if cfg.sentiment.include_vader_baseline:
         need_vader = scores["vader_score"].isna() if "vader_score" in scores else \

@@ -109,6 +109,23 @@ def load_parquet(path: str | Path) -> pd.DataFrame:
     return pd.read_parquet(path)
 
 
+def _package_version(name: str) -> str:
+    """Best-effort version lookup for a module or distribution name."""
+    try:
+        module = __import__(name)
+        version = getattr(module, "__version__", None)
+        if version:
+            return str(version)
+    except Exception:  # pragma: no cover - optional dependency
+        pass
+    try:
+        import importlib.metadata as metadata
+
+        return metadata.version(name)
+    except Exception:  # pragma: no cover - optional dependency
+        return "not installed"
+
+
 def library_versions() -> dict[str, str]:
     versions = {"python": platform.python_version(), "platform": platform.platform()}
     for mod in (
@@ -122,10 +139,7 @@ def library_versions() -> dict[str, str]:
         "transformers",
         "torch",
     ):
-        try:
-            versions[mod] = __import__(mod).__version__
-        except Exception:  # pragma: no cover - optional dependency
-            versions[mod] = "not installed"
+        versions[mod] = _package_version(mod)
     return versions
 
 

@@ -1,0 +1,805 @@
+{
+  "metadata": {
+    "generated_utc": "2026-11-23T06:21:14.751777+00:00",
+    "config_path": "config.demo.yaml",
+    "config_hash": "1c5d2e7d897d2ba52148ca8a273e290959079c9e3abba67f1003ced42c751e9c",
+    "tickers": [
+      "AAPL",
+      "MSFT",
+      "GOOGL",
+      "AMZN"
+    ],
+    "price_source": "yfinance",
+    "news_source": "local",
+    "sentiment_backend": "finbert",
+    "date_range": {
+      "start": "2021-01-01",
+      "end": "2025-06-30"
+    },
+    "random_seed": 42
+  },
+  "splits": {
+    "train": {
+      "start": "2021-01-04",
+      "end": "2023-09-08"
+    },
+    "validation": {
+      "start": "2023-09-12",
+      "end": "2024-08-02"
+    },
+    "test": {
+      "start": "2024-08-06",
+      "end": "2025-06-27"
+    },
+    "n_train_dates": 675,
+    "n_val_dates": 225,
+    "n_test_dates": 224,
+    "embargo_days": 1
+  },
+  "dataset": {
+    "n_rows": 4504,
+    "n_train": 2700,
+    "n_val": 900,
+    "n_test": 896,
+    "target_nan_dropped": 0,
+    "n_tickers": 4,
+    "test_positive_rate": 0.5412946428571429
+  },
+  "sentiment": {
+    "backend": "finbert",
+    "n_headlines": 5605,
+    "n_days": 4508,
+    "n_zero_news_days": 1066,
+    "mean_sentiment": -0.019662322464522146
+  },
+  "models": {
+    "combined_xgb": {
+      "featureset": "combined",
+      "algo": "xgb",
+      "features": [
+        "ret_lag_1",
+        "ret_lag_2",
+        "ret_lag_3",
+        "ret_lag_4",
+        "ret_lag_5",
+        "ret_cum_5",
+        "vol_5",
+        "vol_20",
+        "ret_z_20",
+        "ta_sma_ratio_10",
+        "ta_sma_ratio_50",
+        "ta_ema_ratio_20",
+        "ta_rsi_14",
+        "ta_macd_line",
+        "ta_macd_signal",
+        "ta_macd_hist",
+        "ta_atr_norm_14",
+        "ta_bb_pct_b_20",
+        "ta_obv_z_20",
+        "ta_vol_z_20",
+        "sent_mean",
+        "sent_std",
+        "sent_count",
+        "sent_lag1"
+      ],
+      "validation": {
+        "auc": 0.5211508236511221,
+        "accuracy": 0.5377777777777778,
+        "brier": 0.24894092494143777,
+        "log_loss": 0.6910281827027812,
+        "n_samples": 900,
+        "positive_rate": 0.5422222222222223
+      },
+      "test": {
+        "auc": 0.4886572854742017,
+        "accuracy": 0.5390625,
+        "brier": 0.24921448184068476,
+        "log_loss": 0.6915756130217294,
+        "n_samples": 896,
+        "positive_rate": 0.5412946428571429
+      },
+      "feature_importance": [
+        {
+          "feature": "ta_sma_ratio_50",
+          "importance": 8.013631820678711,
+          "importance_normalized": 0.05318376539760514
+        },
+        {
+          "feature": "ta_ema_ratio_20",
+          "importance": 7.775547504425049,
+          "importance_normalized": 0.051603680274676246
+        },
+        {
+          "feature": "ret_lag_2",
+          "importance": 7.645550727844238,
+          "importance_normalized": 0.050740935613725106
+        },
+        {
+          "feature": "sent_mean",
+          "importance": 7.5863037109375,
+          "importance_normalized": 0.05034773319088045
+        },
+        {
+          "feature": "ta_sma_ratio_10",
+          "importance": 7.542115688323975,
+          "importance_normalized": 0.05005447222248937
+        },
+        {
+          "feature": "ta_macd_line",
+          "importance": 7.007838726043701,
+          "importance_normalized": 0.046508656635362404
+        },
+        {
+          "feature": "ta_obv_z_20",
+          "importance": 6.973158836364746,
+          "importance_normalized": 0.04627849793104796
+        },
+        {
+          "feature": "ta_rsi_14",
+          "importance": 6.763961315155029,
+          "importance_normalized": 0.044890124701687927
+        },
+        {
+          "feature": "ret_cum_5",
+          "importance": 6.652616500854492,
+          "importance_normalized": 0.04415116680912303
+        },
+        {
+          "feature": "ret_z_20",
+          "importance": 6.503635883331299,
+          "importance_normalized": 0.043162432813296306
+        },
+        {
+          "feature": "sent_std",
+          "importance": 6.344679355621338,
+          "importance_normalized": 0.04210749207390151
+        },
+        {
+          "feature": "ta_vol_z_20",
+          "importance": 6.1120686531066895,
+          "importance_normalized": 0.04056373347501152
+        },
+        {
+          "feature": "ret_lag_5",
+          "importance": 6.050775051116943,
+          "importance_normalized": 0.040156948558815964
+        },
+        {
+          "feature": "sent_lag1",
+          "importance": 5.918032646179199,
+          "importance_normalized": 0.03927598209061541
+        },
+        {
+          "feature": "ret_lag_3",
+          "importance": 5.8189921379089355,
+          "importance_normalized": 0.03861868371772122
+        },
+        {
+          "feature": "ta_macd_hist",
+          "importance": 5.7593092918396,
+          "importance_normalized": 0.03822258884405579
+        },
+        {
+          "feature": "ta_atr_norm_14",
+          "importance": 5.734063625335693,
+          "importance_normalized": 0.038055041889729135
+        },
+        {
+          "feature": "vol_5",
+          "importance": 5.656259059906006,
+          "importance_normalized": 0.03753867929068916
+        },
+        {
+          "feature": "ta_bb_pct_b_20",
+          "importance": 5.617781162261963,
+          "importance_normalized": 0.03728331449142134
+        },
+        {
+          "feature": "ret_lag_4",
+          "importance": 5.563011169433594,
+          "importance_normalized": 0.03691982456393353
+        },
+        {
+          "feature": "vol_20",
+          "importance": 5.405229568481445,
+          "importance_normalized": 0.0358726814162481
+        },
+        {
+          "feature": "ret_lag_1",
+          "importance": 5.389228820800781,
+          "importance_normalized": 0.03576648986292033
+        },
+        {
+          "feature": "ta_macd_signal",
+          "importance": 4.996621131896973,
+          "importance_normalized": 0.0331608853521072
+        },
+        {
+          "feature": "sent_count",
+          "importance": 3.847745895385742,
+          "importance_normalized": 0.025536188782935842
+        }
+      ]
+    },
+    "combined_rf": {
+      "featureset": "combined",
+      "algo": "rf",
+      "features": [
+        "ret_lag_1",
+        "ret_lag_2",
+        "ret_lag_3",
+        "ret_lag_4",
+        "ret_lag_5",
+        "ret_cum_5",
+        "vol_5",
+        "vol_20",
+        "ret_z_20",
+        "ta_sma_ratio_10",
+        "ta_sma_ratio_50",
+        "ta_ema_ratio_20",
+        "ta_rsi_14",
+        "ta_macd_line",
+        "ta_macd_signal",
+        "ta_macd_hist",
+        "ta_atr_norm_14",
+        "ta_bb_pct_b_20",
+        "ta_obv_z_20",
+        "ta_vol_z_20",
+        "sent_mean",
+        "sent_std",
+        "sent_count",
+        "sent_lag1"
+      ],
+      "validation": {
+        "auc": 0.4954142129555945,
+        "accuracy": 0.52,
+        "brier": 0.2516941349912889,
+        "log_loss": 0.6966347342227732,
+        "n_samples": 900,
+        "positive_rate": 0.5422222222222223
+      },
+      "test": {
+        "auc": 0.5066947600772569,
+        "accuracy": 0.5200892857142857,
+        "brier": 0.2507836400607809,
+        "log_loss": 0.6947783290320663,
+        "n_samples": 896,
+        "positive_rate": 0.5412946428571429
+      },
+      "feature_importance": [
+        {
+          "feature": "ret_lag_2",
+          "importance": 0.08332450923513458,
+          "importance_normalized": 0.08332450923513458
+        },
+        {
+          "feature": "ta_ema_ratio_20",
+          "importance": 0.05782527476169297,
+          "importance_normalized": 0.05782527476169297
+        },
+        {
+          "feature": "ta_vol_z_20",
+          "importance": 0.055698052662385394,
+          "importance_normalized": 0.055698052662385394
+        },
+        {
+          "feature": "ta_sma_ratio_50",
+          "importance": 0.055583476705365696,
+          "importance_normalized": 0.055583476705365696
+        },
+        {
+          "feature": "sent_mean",
+          "importance": 0.051481198866881794,
+          "importance_normalized": 0.051481198866881794
+        },
+        {
+          "feature": "ret_lag_5",
+          "importance": 0.05101364448358167,
+          "importance_normalized": 0.05101364448358167
+        },
+        {
+          "feature": "ta_obv_z_20",
+          "importance": 0.0499624853156568,
+          "importance_normalized": 0.0499624853156568
+        },
+        {
+          "feature": "ret_lag_3",
+          "importance": 0.04773780035888994,
+          "importance_normalized": 0.04773780035888994
+        },
+        {
+          "feature": "ret_lag_1",
+          "importance": 0.045466509148748856,
+          "importance_normalized": 0.045466509148748856
+        },
+        {
+          "feature": "ta_rsi_14",
+          "importance": 0.042328841491693504,
+          "importance_normalized": 0.042328841491693504
+        },
+        {
+          "feature": "ret_z_20",
+          "importance": 0.04202276478485098,
+          "importance_normalized": 0.04202276478485098
+        },
+        {
+          "feature": "ta_atr_norm_14",
+          "importance": 0.04080938521130977,
+          "importance_normalized": 0.04080938521130977
+        },
+        {
+          "feature": "ta_sma_ratio_10",
+          "importance": 0.03971819020542848,
+          "importance_normalized": 0.03971819020542848
+        },
+        {
+          "feature": "vol_5",
+          "importance": 0.03844026706556255,
+          "importance_normalized": 0.03844026706556255
+        },
+        {
+          "feature": "ta_macd_signal",
+          "importance": 0.038352361166133025,
+          "importance_normalized": 0.038352361166133025
+        },
+        {
+          "feature": "ret_lag_4",
+          "importance": 0.035934802819627715,
+          "importance_normalized": 0.035934802819627715
+        },
+        {
+          "feature": "ret_cum_5",
+          "importance": 0.03513257789364516,
+          "importance_normalized": 0.03513257789364516
+        },
+        {
+          "feature": "ta_bb_pct_b_20",
+          "importance": 0.03485998638599273,
+          "importance_normalized": 0.03485998638599273
+        },
+        {
+          "feature": "vol_20",
+          "importance": 0.034383339309422056,
+          "importance_normalized": 0.034383339309422056
+        },
+        {
+          "feature": "ta_macd_line",
+          "importance": 0.03431936816906882,
+          "importance_normalized": 0.03431936816906882
+        },
+        {
+          "feature": "sent_lag1",
+          "importance": 0.03258850333131757,
+          "importance_normalized": 0.03258850333131757
+        },
+        {
+          "feature": "ta_macd_hist",
+          "importance": 0.03235078063929492,
+          "importance_normalized": 0.03235078063929492
+        },
+        {
+          "feature": "sent_std",
+          "importance": 0.015366230554403443,
+          "importance_normalized": 0.015366230554403443
+        },
+        {
+          "feature": "sent_count",
+          "importance": 0.0052996494339115265,
+          "importance_normalized": 0.0052996494339115265
+        }
+      ]
+    },
+    "tech_only_xgb": {
+      "featureset": "tech_only",
+      "algo": "xgb",
+      "features": [
+        "ret_lag_1",
+        "ret_lag_2",
+        "ret_lag_3",
+        "ret_lag_4",
+        "ret_lag_5",
+        "ret_cum_5",
+        "vol_5",
+        "vol_20",
+        "ret_z_20",
+        "ta_sma_ratio_10",
+        "ta_sma_ratio_50",
+        "ta_ema_ratio_20",
+        "ta_rsi_14",
+        "ta_macd_line",
+        "ta_macd_signal",
+        "ta_macd_hist",
+        "ta_atr_norm_14",
+        "ta_bb_pct_b_20",
+        "ta_obv_z_20",
+        "ta_vol_z_20"
+      ],
+      "validation": {
+        "auc": 0.5205216457106477,
+        "accuracy": 0.5422222222222223,
+        "brier": 0.2489850991595409,
+        "log_loss": 0.6911167821611209,
+        "n_samples": 900,
+        "positive_rate": 0.5422222222222223
+      },
+      "test": {
+        "auc": 0.5032031504753304,
+        "accuracy": 0.5412946428571429,
+        "brier": 0.24903857870502374,
+        "log_loss": 0.6912238453776699,
+        "n_samples": 896,
+        "positive_rate": 0.5412946428571429
+      },
+      "feature_importance": [
+        {
+          "feature": "ta_ema_ratio_20",
+          "importance": 7.471750736236572,
+          "importance_normalized": 0.05964618992788011
+        },
+        {
+          "feature": "ta_sma_ratio_50",
+          "importance": 7.3621954917907715,
+          "importance_normalized": 0.05877162208581892
+        },
+        {
+          "feature": "ret_lag_2",
+          "importance": 7.018953323364258,
+          "importance_normalized": 0.056031556431602875
+        },
+        {
+          "feature": "ta_sma_ratio_10",
+          "importance": 6.91711950302124,
+          "importance_normalized": 0.05521862789534918
+        },
+        {
+          "feature": "ta_bb_pct_b_20",
+          "importance": 6.653801918029785,
+          "importance_normalized": 0.053116591673827436
+        },
+        {
+          "feature": "ta_vol_z_20",
+          "importance": 6.534970283508301,
+          "importance_normalized": 0.05216797139829627
+        },
+        {
+          "feature": "ret_z_20",
+          "importance": 6.4715657234191895,
+          "importance_normalized": 0.051661819551577455
+        },
+        {
+          "feature": "ret_lag_1",
+          "importance": 6.308678150177002,
+          "importance_normalized": 0.05036150541189717
+        },
+        {
+          "feature": "ta_macd_line",
+          "importance": 6.300627708435059,
+          "importance_normalized": 0.050297239593336804
+        },
+        {
+          "feature": "ret_lag_3",
+          "importance": 6.243101596832275,
+          "importance_normalized": 0.04983801477446921
+        },
+        {
+          "feature": "vol_5",
+          "importance": 6.236269474029541,
+          "importance_normalized": 0.049783474666174894
+        },
+        {
+          "feature": "ta_obv_z_20",
+          "importance": 6.11181116104126,
+          "importance_normalized": 0.048789937216029484
+        },
+        {
+          "feature": "ta_macd_hist",
+          "importance": 5.970365524291992,
+          "importance_normalized": 0.04766079177049148
+        },
+        {
+          "feature": "ret_lag_5",
+          "importance": 5.850009441375732,
+          "importance_normalized": 0.046700001985872035
+        },
+        {
+          "feature": "ta_atr_norm_14",
+          "importance": 5.824326038360596,
+          "importance_normalized": 0.046494974116459094
+        },
+        {
+          "feature": "ta_rsi_14",
+          "importance": 5.814894199371338,
+          "importance_normalized": 0.04641968075087691
+        },
+        {
+          "feature": "ret_cum_5",
+          "importance": 5.67739200592041,
+          "importance_normalized": 0.04532201539297109
+        },
+        {
+          "feature": "vol_20",
+          "importance": 5.57963752746582,
+          "importance_normalized": 0.04454165180831273
+        },
+        {
+          "feature": "ta_macd_signal",
+          "importance": 5.543741226196289,
+          "importance_normalized": 0.044255095460434705
+        },
+        {
+          "feature": "ret_lag_4",
+          "importance": 5.376651763916016,
+          "importance_normalized": 0.042921238088322156
+        }
+      ]
+    },
+    "tech_only_rf": {
+      "featureset": "tech_only",
+      "algo": "rf",
+      "features": [
+        "ret_lag_1",
+        "ret_lag_2",
+        "ret_lag_3",
+        "ret_lag_4",
+        "ret_lag_5",
+        "ret_cum_5",
+        "vol_5",
+        "vol_20",
+        "ret_z_20",
+        "ta_sma_ratio_10",
+        "ta_sma_ratio_50",
+        "ta_ema_ratio_20",
+        "ta_rsi_14",
+        "ta_macd_line",
+        "ta_macd_signal",
+        "ta_macd_hist",
+        "ta_atr_norm_14",
+        "ta_bb_pct_b_20",
+        "ta_obv_z_20",
+        "ta_vol_z_20"
+      ],
+      "validation": {
+        "auc": 0.49568279484322775,
+        "accuracy": 0.5155555555555555,
+        "brier": 0.25196301657297426,
+        "log_loss": 0.6971590676707605,
+        "n_samples": 900,
+        "positive_rate": 0.5422222222222223
+      },
+      "test": {
+        "auc": 0.5116612737351695,
+        "accuracy": 0.5267857142857143,
+        "brier": 0.250319644299875,
+        "log_loss": 0.6938330895005567,
+        "n_samples": 896,
+        "positive_rate": 0.5412946428571429
+      },
+      "feature_importance": [
+        {
+          "feature": "ret_lag_2",
+          "importance": 0.08969500639167853,
+          "importance_normalized": 0.08969500639167853
+        },
+        {
+          "feature": "ta_vol_z_20",
+          "importance": 0.0648729984991397,
+          "importance_normalized": 0.0648729984991397
+        },
+        {
+          "feature": "ta_ema_ratio_20",
+          "importance": 0.06389684255641363,
+          "importance_normalized": 0.06389684255641363
+        },
+        {
+          "feature": "ta_sma_ratio_50",
+          "importance": 0.06078827073156153,
+          "importance_normalized": 0.06078827073156153
+        },
+        {
+          "feature": "ret_lag_5",
+          "importance": 0.05569734414833122,
+          "importance_normalized": 0.05569734414833122
+        },
+        {
+          "feature": "ta_obv_z_20",
+          "importance": 0.055694582747846014,
+          "importance_normalized": 0.055694582747846014
+        },
+        {
+          "feature": "ret_lag_1",
+          "importance": 0.05481405866221092,
+          "importance_normalized": 0.05481405866221092
+        },
+        {
+          "feature": "ta_rsi_14",
+          "importance": 0.052297402801878584,
+          "importance_normalized": 0.052297402801878584
+        },
+        {
+          "feature": "ret_lag_3",
+          "importance": 0.04776359916260567,
+          "importance_normalized": 0.04776359916260567
+        },
+        {
+          "feature": "ret_z_20",
+          "importance": 0.047445125055973265,
+          "importance_normalized": 0.047445125055973265
+        },
+        {
+          "feature": "ta_atr_norm_14",
+          "importance": 0.04672808618699115,
+          "importance_normalized": 0.04672808618699115
+        },
+        {
+          "feature": "vol_5",
+          "importance": 0.04281433867229041,
+          "importance_normalized": 0.04281433867229041
+        },
+        {
+          "feature": "ta_sma_ratio_10",
+          "importance": 0.042565964420132225,
+          "importance_normalized": 0.042565964420132225
+        },
+        {
+          "feature": "ret_lag_4",
+          "importance": 0.040362486970446976,
+          "importance_normalized": 0.040362486970446976
+        },
+        {
+          "feature": "ta_macd_line",
+          "importance": 0.04008445630581777,
+          "importance_normalized": 0.04008445630581777
+        },
+        {
+          "feature": "ta_macd_signal",
+          "importance": 0.040074399028580496,
+          "importance_normalized": 0.040074399028580496
+        },
+        {
+          "feature": "ret_cum_5",
+          "importance": 0.03992399804534395,
+          "importance_normalized": 0.03992399804534395
+        },
+        {
+          "feature": "ta_bb_pct_b_20",
+          "importance": 0.03898781337547745,
+          "importance_normalized": 0.03898781337547745
+        },
+        {
+          "feature": "vol_20",
+          "importance": 0.03827189058901695,
+          "importance_normalized": 0.03827189058901695
+        },
+        {
+          "feature": "ta_macd_hist",
+          "importance": 0.037221335648263625,
+          "importance_normalized": 0.037221335648263625
+        }
+      ]
+    },
+    "sent_only_xgb": {
+      "featureset": "sent_only",
+      "algo": "xgb",
+      "features": [
+        "sent_mean",
+        "sent_std",
+        "sent_count",
+        "sent_lag1"
+      ],
+      "validation": {
+        "auc": 0.5422916998249244,
+        "accuracy": 0.5466666666666666,
+        "brier": 0.24871802993335343,
+        "log_loss": 0.6905825340509827,
+        "n_samples": 900,
+        "positive_rate": 0.5422222222222223
+      },
+      "test": {
+        "auc": 0.4976321268216821,
+        "accuracy": 0.5357142857142857,
+        "brier": 0.24916718352955178,
+        "log_loss": 0.691480752221579,
+        "n_samples": 896,
+        "positive_rate": 0.5412946428571429
+      },
+      "feature_importance": [
+        {
+          "feature": "sent_mean",
+          "importance": 2.884974718093872,
+          "importance_normalized": 0.28770059754326366
+        },
+        {
+          "feature": "sent_lag1",
+          "importance": 2.5593819618225098,
+          "importance_normalized": 0.2552312556292659
+        },
+        {
+          "feature": "sent_std",
+          "importance": 2.351135730743408,
+          "importance_normalized": 0.23446415332440593
+        },
+        {
+          "feature": "sent_count",
+          "importance": 2.232205629348755,
+          "importance_normalized": 0.2226039935030645
+        }
+      ]
+    },
+    "sent_only_rf": {
+      "featureset": "sent_only",
+      "algo": "rf",
+      "features": [
+        "sent_mean",
+        "sent_std",
+        "sent_count",
+        "sent_lag1"
+      ],
+      "validation": {
+        "auc": 0.5336572895113799,
+        "accuracy": 0.5411111111111111,
+        "brier": 0.2492093485782015,
+        "log_loss": 0.6917422577095239,
+        "n_samples": 900,
+        "positive_rate": 0.5422222222222223
+      },
+      "test": {
+        "auc": 0.5189429854265433,
+        "accuracy": 0.5301339285714286,
+        "brier": 0.25025238160389063,
+        "log_loss": 0.6938145917628559,
+        "n_samples": 896,
+        "positive_rate": 0.5412946428571429
+      },
+      "feature_importance": [
+        {
+          "feature": "sent_mean",
+          "importance": 0.4146923445225077,
+          "importance_normalized": 0.4146923445225077
+        },
+        {
+          "feature": "sent_lag1",
+          "importance": 0.33818613258098523,
+          "importance_normalized": 0.33818613258098523
+        },
+        {
+          "feature": "sent_std",
+          "importance": 0.21052882951985621,
+          "importance_normalized": 0.21052882951985621
+        },
+        {
+          "feature": "sent_count",
+          "importance": 0.03659269337665083,
+          "importance_normalized": 0.03659269337665083
+        }
+      ]
+    }
+  },
+  "baselines": {
+    "majority": {
+      "auc": 0.5,
+      "accuracy": 0.5412946428571429,
+      "brier": 0.24829475247130103,
+      "log_loss": 0.6897327977264575,
+      "n_samples": 896,
+      "positive_rate": 0.5412946428571429,
+      "predicted_class": 1
+    },
+    "random": {
+      "auc": 0.48349261293801893,
+      "accuracy": 0.484375,
+      "brier": 0.3434468592960562,
+      "log_loss": 1.0281734339303157,
+      "n_samples": 896,
+      "positive_rate": 0.5412946428571429,
+      "auc_floor": 0.5
+    }
+  },
+  "comparisons": {
+    "combined_minus_tech_only_xgb_auc": -0.0145458650011287,
+    "combined_minus_sent_only_xgb_auc": -0.008974841347480444,
+    "combined_minus_tech_only_rf_auc": -0.0049665136579125635,
+    "combined_minus_sent_only_rf_auc": -0.012248225349286379,
+    "combined_minus_majority_auc": -0.011342714525798325,
+    "combined_minus_random_auc": 0.005164672536182746
+  }
+}

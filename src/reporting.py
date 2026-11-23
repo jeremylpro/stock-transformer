@@ -117,6 +117,9 @@ def _comparison_sentence(metrics: dict[str, Any], algo: str = "xgb") -> str:
 def _interpretation(auc: float | None) -> str:
     if auc is None or auc != auc:
         return "Test AUC is undefined, so no signal can be claimed."
+    if auc < 0.50:
+        return ("Test AUC is below 0.50: the model does no better than chance on this "
+                "split; this is reported as a negative result.")
     if auc <= 0.53:
         return ("Test AUC is in [0.50, 0.53]: there is no evidence of exploitable signal; "
                 "this is reported as a negative result.")

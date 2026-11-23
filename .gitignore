@@ -6,10 +6,6 @@ __pycache__/
 .env
 logs/
 data/demo/
-reports/*.png
-reports/*.json
-reports/summary.md
-reports/*.manifest.json
 artifacts/
 data/raw/*.parquet
 data/processed/*.parquet

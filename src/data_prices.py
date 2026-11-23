@@ -38,7 +38,11 @@ def _normalize_columns(df: pd.DataFrame, ticker: str) -> pd.DataFrame:
     df["ticker"] = ticker.upper()
     if "date" not in df.columns:
         df = df.reset_index().rename(columns={"Date": "date", "index": "date", "Datetime": "date"})
-    df["date"] = pd.to_datetime(df["date"], errors="coerce").dt.tz_localize(None).dt.normalize()
+    dates = pd.to_datetime(df["date"], errors="coerce")
+    if getattr(dates.dt, "tz", None) is not None:
+        # Keep the provider's wall-clock trading day, then store it tz-naive.
+        dates = dates.dt.tz_localize(None)
+    df["date"] = dates.dt.normalize()
     missing = [c for c in PRICE_COLUMNS if c not in df.columns]
     if missing:
         raise PriceValidationError(f"{ticker}: downloaded data missing columns {missing}")

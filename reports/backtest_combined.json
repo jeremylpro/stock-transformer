@@ -1,0 +1,125 @@
+{
+  "featureset": "combined",
+  "algo": "xgb",
+  "entry_threshold": 0.55,
+  "costs": {
+    "commission_bps": 10.0,
+    "slippage_bps": 5.0,
+    "round_trip_cost_rate": 0.0015,
+    "fill": "next_bar_open",
+    "trade_on_close": false
+  },
+  "period": {
+    "start": "2024-08-06",
+    "end": "2025-06-27",
+    "n_test_rows": 896
+  },
+  "n_tickers": 4,
+  "n_long_days": 0,
+  "hit_rate": null,
+  "n_trades": 0,
+  "n_position_changes": 0,
+  "trades": [],
+  "gross": {
+    "cumulative_return": 0.0,
+    "annualized_sharpe": 0.0,
+    "max_drawdown": 0.0
+  },
+  "net": {
+    "cumulative_return": 0.0,
+    "annualized_sharpe": 0.0,
+    "max_drawdown": 0.0
+  },
+  "buy_and_hold_gross": {
+    "cumulative_return": 0.1819796821131039,
+    "annualized_sharpe": 0.8417843111332383,
+    "max_drawdown": -0.2648273069407261
+  },
+  "buy_and_hold_net": {
+    "cumulative_return": 0.1819796821131039,
+    "annualized_sharpe": 0.8417843111332284,
+    "max_drawdown": -0.2648273069407261
+  },
+  "per_ticker": {
+    "AAPL": {
+      "n_signals": 0,
+      "hit_rate": null,
+      "n_trades": 0,
+      "net": {
+        "cumulative_return": 0.0,
+        "annualized_sharpe": 0.0,
+        "max_drawdown": 0.0
+      },
+      "gross": {
+        "cumulative_return": 0.0,
+        "annualized_sharpe": 0.0,
+        "max_drawdown": 0.0
+      },
+      "buy_and_hold": {
+        "cumulative_return": -0.015006954744290701,
+        "annualized_sharpe": 0.10871721148337654,
+        "max_drawdown": -0.3336051063073737
+      }
+    },
+    "AMZN": {
+      "n_signals": 0,
+      "hit_rate": null,
+      "n_trades": 0,
+      "net": {
+        "cumulative_return": 0.0,
+        "annualized_sharpe": 0.0,
+        "max_drawdown": 0.0
+      },
+      "gross": {
+        "cumulative_return": 0.0,
+        "annualized_sharpe": 0.0,
+        "max_drawdown": 0.0
+      },
+      "buy_and_hold": {
+        "cumulative_return": 0.3625015126593836,
+        "annualized_sharpe": 1.186173830557306,
+        "max_drawdown": -0.3087663843187607
+      }
+    },
+    "GOOGL": {
+      "n_signals": 0,
+      "hit_rate": null,
+      "n_trades": 0,
+      "net": {
+        "cumulative_return": 0.0,
+        "annualized_sharpe": 0.0,
+        "max_drawdown": 0.0
+      },
+      "gross": {
+        "cumulative_return": 0.0,
+        "annualized_sharpe": 0.0,
+        "max_drawdown": 0.0
+      },
+      "buy_and_hold": {
+        "cumulative_return": 0.11198531646753485,
+        "annualized_sharpe": 0.5302855304324805,
+        "max_drawdown": -0.29805868470807684
+      }
+    },
+    "MSFT": {
+      "n_signals": 0,
+      "hit_rate": null,
+      "n_trades": 0,
+      "net": {
+        "cumulative_return": 0.0,
+        "annualized_sharpe": 0.0,
+        "max_drawdown": 0.0
+      },
+      "gross": {
+        "cumulative_return": 0.0,
+        "annualized_sharpe": 0.0,
+        "max_drawdown": 0.0
+      },
+      "buy_and_hold": {
+        "cumulative_return": 0.2684388540697875,
+        "annualized_sharpe": 1.1697657583739578,
+        "max_drawdown": -0.21825702729834462
+      }
+    }
+  }
+}
