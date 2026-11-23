@@ -1,0 +1,74 @@
+# Demo configuration: real prices from yfinance, synthetic headlines.
+# Use this only to exercise the pipeline without a Finnhub key. The generated
+# report is explicitly marked as demo data. For real results, copy .env.example
+# to .env, set FINNHUB_API_KEY, and run with config.yaml.
+
+universe:
+  tickers: ["AAPL", "MSFT", "GOOGL", "AMZN"]
+  benchmark: "SPY"
+
+date_range:
+  start: "2021-01-01"
+  end: "2025-06-30"
+
+data:
+  price_source: "yfinance"
+  news_source: "local"
+  market_tz: "America/New_York"
+  close_time: "16:00"
+  cache_dir: "data/raw"
+  price_file: null
+  news_file: "data/demo/news.parquet"
+
+sentiment:
+  model: "ProsusAI/finbert"
+  batch_size: 32
+  max_tokens: 64
+  include_vader_baseline: true
+  backend: "auto"
+
+features:
+  return_lags: 5
+  vol_windows: [5, 20]
+  winsorize_quantiles: [0.01, 0.99]
+  indicators:
+    sma_windows: [10, 50]
+    ema_window: 20
+    rsi_window: 14
+    macd: {fast: 12, slow: 26, signal: 9}
+    atr_window: 14
+    bb_window: 20
+    obv_window: 20
+  sentiment:
+    include_lag1: true
+    min_headlines_per_day: 1
+
+splits:
+  method: "chronological"
+  train_ratio: 0.60
+  val_ratio: 0.20
+  test_ratio: 0.20
+  embargo_days: 1
+
+model:
+  xgb:
+    n_estimators: 500
+    max_depth: 4
+    learning_rate: 0.03
+    subsample: 0.8
+    colsample_bytree: 0.8
+    early_stopping_rounds: 50
+  rf:
+    n_estimators: 500
+    max_depth: 6
+    min_samples_leaf: 20
+  random_seed: 42
+
+backtest:
+  entry_threshold: 0.55
+  commission_bps: 10
+  slippage_bps: 5
+  fill: "next_bar_open"
+
+reporting:
+  output_dir: "reports"

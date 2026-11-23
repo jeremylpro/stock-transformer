@@ -1,0 +1,10 @@
+ticker,headline,published_utc,source,url_hash
+AAPL,Apple tops earnings expectations,2024-02-05 20:59:00+00:00,wire,4f3abb337e8173d3
+AAPL,Apple hit by regulatory probe,2024-02-05 21:01:00+00:00,wire,69040df3c23587ae
+AAPL,Apple product event announced,2024-02-05 21:00:00+00:00,wire,ad7c1d4778e50fd5
+MSFT,Microsoft cloud demand remains strong,2024-02-03 15:00:00+00:00,paper,ae0131a86e4290fb
+GOOGL,Alphabet ad sales soften in Europe,2024-02-04 17:00:00+00:00,paper,edb150a15121e2f2
+AAPL,Apple launches a rocket to the moon,2025-01-01 04:00:00+00:00,future,227744dcd12807f5
+AAPL,Duplicate headline text,2024-03-01 15:00:00+00:00,wire,8d26808a1663b62c
+AAPL,Duplicate headline text,2024-03-01 16:00:00+00:00,other,8d26808a1663b62c
+AAPL,   ,2024-03-02 15:00:00+00:00,wire,e173062e2f28f186
