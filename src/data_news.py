@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import re
 import time
 from datetime import date, timedelta
 from pathlib import Path
@@ -56,6 +57,11 @@ def _headline_hash(headline: str) -> str:
     return hashlib.sha256(normalized.encode("utf-8")).hexdigest()[:16]
 
 
+def _scrub_secret(text: object) -> str:
+    """Remove API tokens from exception/log text."""
+    return re.sub(r"(token=)[^&\s]+", r"\1***", str(text))
+
+
 def _records_to_df(records: list[dict[str, Any]], ticker: str) -> pd.DataFrame:
     rows = []
     for item in records:
@@ -92,7 +98,15 @@ def _load_cached_news(path: Path) -> pd.DataFrame | None:
         return None
 
 
-def _date_chunks(start: date, end: date, days: int = 90) -> Iterable[tuple[date, date]]:
+# Finnhub caps a company-news response (250 articles on the free tier). A
+# 90-day window silently loses everything except the last few days, so fetch
+# short windows and let the token bucket keep us under the rate limit.
+NEWS_CHUNK_DAYS = 7
+
+
+def _date_chunks(
+    start: date, end: date, days: int = NEWS_CHUNK_DAYS
+) -> Iterable[tuple[date, date]]:
     cursor = start
     while cursor <= end:
         chunk_end = min(cursor + timedelta(days=days - 1), end)
@@ -120,7 +134,9 @@ def _fetch_finnhub_chunk(
             timeout=45,
         )
     except requests.RequestException as exc:
-        raise NewsFetchError(f"Finnhub request failed for {ticker}: {exc}") from exc
+        raise NewsFetchError(
+            f"Finnhub request failed for {ticker}: {_scrub_secret(exc)}"
+        ) from exc
 
     if resp.status_code in {401, 403}:
         raise NewsAuthError(

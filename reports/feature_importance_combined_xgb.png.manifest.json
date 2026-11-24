@@ -1,12 +1,12 @@
 {
   "stage": "report",
   "artifact": "reports/feature_importance_combined_xgb.png",
-  "artifact_sha256": "3a1d10f157362294dacdd9a933d66f2f63ff0dc31ebcb824cfa422141fab3e9e",
-  "config_hash": "1c5d2e7d897d2ba52148ca8a273e290959079c9e3abba67f1003ced42c751e9c",
+  "artifact_sha256": "cdd9bc5d3956c31cad60f18d3f52f70fcb9d4aaf387f499636156fbfddb6e1b5",
+  "config_hash": "9a2e64b988af8842fbdbddfd568560b814ebd27480ab9a8b947cdb94f2340fce",
   "input_hashes": {
-    "config.demo.yaml": "1c5d2e7d897d2ba52148ca8a273e290959079c9e3abba67f1003ced42c751e9c",
-    "artifacts/predictions_test.parquet": "67cc8b49a51a542c7d07a2b5e9948905d68884be93c2463729d64d300e43e08f",
-    "reports/splits.json": "07c189766654c11167262341e580eb92ab79637b9ffc18e0986138f6b2edf46a"
+    "config.finnhub.yaml": "9a2e64b988af8842fbdbddfd568560b814ebd27480ab9a8b947cdb94f2340fce",
+    "artifacts/predictions_test.parquet": "137427fee958e9d957c9360bb8c425caf15334f2b63914c4eb4d6e890c5707cc",
+    "reports/splits.json": "356d712cd5d3edf910289d3d3727ba43eb906cd786fd5cbb17ad765f351fc28f"
   },
   "library_versions": {
     "python": "3.12.16",
@@ -21,5 +21,5 @@
     "transformers": "4.47.1",
     "torch": "2.2.2"
   },
-  "created_utc": "2026-11-23T06:21:17.248390+00:00"
+  "created_utc": "2026-11-24T04:50:54.201120+00:00"
 }

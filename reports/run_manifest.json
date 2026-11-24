@@ -1,6 +1,6 @@
 {
-  "generated_utc": "2026-11-23T06:21:17.248990+00:00",
-  "config_hash": "1c5d2e7d897d2ba52148ca8a273e290959079c9e3abba67f1003ced42c751e9c",
+  "generated_utc": "2026-11-24T04:50:54.201720+00:00",
+  "config_hash": "9a2e64b988af8842fbdbddfd568560b814ebd27480ab9a8b947cdb94f2340fce",
   "artifacts": [
     "artifacts/models/combined_rf.joblib",
     "artifacts/models/combined_rf.joblib.manifest.json",
@@ -20,6 +20,10 @@
     "data/processed/sentiment_daily.parquet",
     "data/raw/benchmark.parquet",
     "data/raw/news.parquet",
+    "data/raw/news_AAPL.parquet",
+    "data/raw/news_AMZN.parquet",
+    "data/raw/news_GOOGL.parquet",
+    "data/raw/news_MSFT.parquet",
     "data/raw/prices.parquet",
     "data/raw/prices_AAPL.parquet",
     "data/raw/prices_AMZN.parquet",

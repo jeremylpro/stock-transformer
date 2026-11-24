@@ -1,0 +1,77 @@
+# Finnhub-free-tier run: same as config.yaml, but limited to the ~1 year of
+# news history the free tier actually returns. Put the key in
+# finnhub-api-key.txt (git-ignored) or .env, then:
+#   FINNHUB_API_KEY="$(tr -d '\r\n' < finnhub-api-key.txt)" \
+#     python -m src.pipeline --config config.finnhub.yaml --force
+# config.yaml remains the specification's 2021-01-01..2025-06-30 configuration.
+
+universe:
+  tickers: ["AAPL", "MSFT", "GOOGL", "AMZN"]
+  benchmark: "SPY"
+
+date_range:
+  start: "2025-12-01"
+  end: "2026-11-20"
+
+data:
+  price_source: "yfinance"          # yfinance | alphavantage | local
+  news_source: "finnhub"            # finnhub | local
+  market_tz: "America/New_York"
+  close_time: "16:00"
+  cache_dir: "data/raw"
+  # Optional paths used only when a source is "local" (tests / offline demos).
+  price_file: null
+  news_file: null
+
+sentiment:
+  model: "ProsusAI/finbert"
+  batch_size: 64                    # faster CPU throughput; model is unchanged
+  max_tokens: 64
+  include_vader_baseline: true
+  backend: "auto"                   # auto | finbert | vader
+
+features:
+  return_lags: 5
+  vol_windows: [5, 20]
+  winsorize_quantiles: [0.01, 0.99]
+  indicators:
+    sma_windows: [10, 50]
+    ema_window: 20
+    rsi_window: 14
+    macd: {fast: 12, slow: 26, signal: 9}
+    atr_window: 14
+    bb_window: 20
+    obv_window: 20
+  sentiment:
+    include_lag1: true
+    min_headlines_per_day: 1
+
+splits:
+  method: "chronological"
+  train_ratio: 0.60
+  val_ratio: 0.20
+  test_ratio: 0.20
+  embargo_days: 1
+
+model:
+  xgb:
+    n_estimators: 500
+    max_depth: 4
+    learning_rate: 0.03
+    subsample: 0.8
+    colsample_bytree: 0.8
+    early_stopping_rounds: 50
+  rf:
+    n_estimators: 500
+    max_depth: 6
+    min_samples_leaf: 20
+  random_seed: 42
+
+backtest:
+  entry_threshold: 0.55       # go long if p_up >= threshold
+  commission_bps: 10          # 0.10% per trade
+  slippage_bps: 5
+  fill: "next_bar_open"
+
+reporting:
+  output_dir: "reports"

@@ -16,9 +16,11 @@ This implementation follows `docs/product-design.md` and
   Parquet caching and tail refetch; Alpha Vantage fallback; strict validation
   (positive `adj_close`, no null OHLC, no duplicate `(ticker, date)`, missing-day
   warnings, no forward filling).
-- **News** (`src/data_news.py`): Finnhub `/company-news` with 90-day pagination,
-  a token-bucket rate limiter, per-ticker caching, timestamp parsing and
-  deduplication. A `local` source exists for tests and offline demos.
+- **News** (`src/data_news.py`): Finnhub `/company-news` with short-window
+  pagination (7 days, because Finnhub caps a response at 250 articles), a
+  token-bucket rate limiter, per-ticker caching, timestamp parsing and
+  deduplication. API tokens are scrubbed from error text. A `local` source
+  exists for tests and offline demos.
 - **Alignment** (`src/alignment.py`): the single implementation of the
   16:00 ET cutoff. A headline belongs to the first trading day whose close is
   strictly after publication, so after-close and weekend stories roll forward.
@@ -45,7 +47,7 @@ This implementation follows `docs/product-design.md` and
 - **Report** (`src/reporting.py`): `reports/summary.md`, metrics JSON, split
   ranges, top-15 importances, net-of-cost backtest table and known limitations.
 
-All 46 tests in `tests/` pass, including the leakage suite from §10.
+All 48 tests in `tests/` pass, including the leakage suite from §10.
 
 ---
 
@@ -63,6 +65,10 @@ cp .env.example .env
 
 python -m src.pipeline --config config.yaml
 ```
+
+`config.yaml` keeps the specification's 2021-2025 window, which needs a paid
+Finnhub plan. With a free-tier key, use `config.finnhub.yaml` instead (see
+"Real Finnhub run" below); it covers the most recent year.
 
 The first run downloads prices, headlines and the FinBERT weights (~440 MB),
 then writes:
@@ -149,15 +155,43 @@ The generated `reports/summary.md` carries an explicit **OFFLINE / DEMO DATA
 WARNING**. Do not interpret its metrics as market evidence: the synthetic
 sentiment is independent of returns by construction.
 
+### Real Finnhub run (free tier)
+
+Put the key in a git-ignored `finnhub-api-key.txt` (one line, no quotes) or in
+`.env` as `FINNHUB_API_KEY=...`, then:
+
+```bash
+export FINNHUB_API_KEY="$(tr -d '\r\n' < finnhub-api-key.txt)"
+python -m src.pipeline --config config.finnhub.yaml --force
+```
+
+The free tier only returns roughly the last year of company news; requests for
+2021–2025 return HTTP 200 with an empty list. `config.yaml` deliberately keeps
+the specification's 2021-01-01..2025-06-30 window, so a free-tier key cannot
+populate it. `config.finnhub.yaml` is identical except for
+`date_range: 2025-12-01..2026-11-20`, which is fully covered by the free tier.
+The API also caps a company-news response at 250 articles, so ingestion pages in
+7-day windows; a 90-day window silently loses all but the last few days.
+
 ### Results included in this repository
 
-The checked-in `reports/` directory is the output of the demo run above, because
-no `FINNHUB_API_KEY` was available in the build environment. It contains real
-prices, FinBERT scores over synthetic headlines, all six models, both baselines,
-all three backtests and the plots. Every file is stamped with the demo warning
-and with the config/hash manifests, so it is reproducible and clearly not a
-real-news result. Running the pipeline with `config.yaml` and a Finnhub key
-overwrites `reports/` with real results.
+The checked-in `reports/` directory is the **real-news free-tier run** from
+`config.finnhub.yaml`:
+
+- 47,996 deduplicated Finnhub headlines, scored with FinBERT (`auto` resolved to
+  FinBERT); 17.8% of ticker-days have no eligible headline and keep `sent_mean`
+  as NaN.
+- 980 labeled rows, split chronologically 588 / 196 / 188 (train / validation /
+  test) with a one-day embargo.
+- Test AUC: combined XGB **0.4812**, technical-only XGB 0.4668, sentiment-only
+  XGB 0.5264. The combined model did not beat both single-modality baselines,
+  so the report states a negative result.
+- No model reached the 0.55 entry threshold, so all three long/cash backtests
+  stayed in cash. The report records zero trades rather than hiding it.
+
+This is a small, recent, single-split sample, so the AUC estimates are noisy.
+The synthetic demo (`config.demo.yaml`) remains available for offline plumbing
+tests and is clearly marked with an `OFFLINE / DEMO DATA WARNING`.
 
 ---
 
@@ -190,9 +224,9 @@ the spike are byte-for-byte unchanged when future prices are removed.
 - Test AUC in `(0.53, 0.58]` → plausible weak signal; check stability.
 - Test AUC above `0.60` → treat as a leakage red flag, not a win.
 
-The current demo run is a negative result (combined XGB test AUC ≈ 0.49), and the
-report says so explicitly. This is the honest outcome for synthetic headlines
-that are independent of returns.
+The current checked-in run is a negative result (combined XGB test AUC 0.4812,
+sentiment-only XGB 0.5264), and the report says so explicitly. This is the
+honest outcome for a one-year, four-ticker sample with headline-only sentiment.
 
 ---
 
@@ -201,7 +235,10 @@ that are independent of returns.
 - Small universe of current large caps → survivorship and selection bias.
 - Headline-only sentiment discards article bodies, entity resolution and source
   credibility.
-- Finnhub's free tier covers only a limited history and has coverage gaps.
+- Finnhub's free tier covers only about one year of history and caps each
+  response at 250 articles; the real run therefore uses a shorter window and a
+  188-row test set. The specification's 2021-2025 window needs a paid Finnhub
+  plan.
 - One chronological split gives a high-variance AUC estimate; bootstrap
   confidence intervals are post-MVP.
 - No market-regime or cross-sectional features.
@@ -234,7 +271,8 @@ back to VADER and the report records the backend that actually ran.
 ## Directory map
 
 ```
-config.yaml                     main configuration (Finnhub news)
+config.yaml                     main configuration (Finnhub, spec window)
+config.finnhub.yaml             free-tier real run (last ~1 year)
 config.demo.yaml                real prices + synthetic headlines
 src/
   config.py                     typed YAML loader and validation
@@ -250,7 +288,7 @@ src/
   backtest.py                   next-bar-open long/cash backtest
   reporting.py                  summary.md and plots
   pipeline.py                   stage orchestration and manifests
-tests/                          46 unit/integration/leakage tests
+tests/                          48 unit/integration/leakage tests
 tests/fixtures/                 deterministic leakage and smoke datasets
 scripts/generate_fixtures.py    regenerate test fixtures
 scripts/generate_demo_news.py   synthetic demo headlines

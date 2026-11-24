@@ -1,12 +1,12 @@
 {
   "stage": "train",
   "artifact": "reports/metrics.json",
-  "artifact_sha256": "0318c6c10da42b6d347b5d0e747b7a1932b46d21b154c1ac418bf88dd1deec48",
-  "config_hash": "1c5d2e7d897d2ba52148ca8a273e290959079c9e3abba67f1003ced42c751e9c",
+  "artifact_sha256": "3a48a2bf331f86b36d64b5ae6f352e2166dc17c0c965fddc5b4dc2dcea2aeafa",
+  "config_hash": "9a2e64b988af8842fbdbddfd568560b814ebd27480ab9a8b947cdb94f2340fce",
   "input_hashes": {
-    "config.demo.yaml": "1c5d2e7d897d2ba52148ca8a273e290959079c9e3abba67f1003ced42c751e9c",
-    "data/processed/features.parquet": "31d2a6c53cd443deab7ad0e4c6a7961f112c5107d7d15a452244d5dff90b2443",
-    "data/raw/prices.parquet": "e3fc7ab4f4eabc3bb6b83f7f6ef7525908b17794c4bb84aa0c7341ce55888e57"
+    "config.finnhub.yaml": "9a2e64b988af8842fbdbddfd568560b814ebd27480ab9a8b947cdb94f2340fce",
+    "data/processed/features.parquet": "f56ae76e9e412daca0c1908fd05b7bd302adcaa4653636d3172beb02e713b239",
+    "data/raw/prices.parquet": "c803c551f05ed8bd0139a7ccdfdc33525f9a80a8f828d630c5adc9849843ec4d"
   },
   "library_versions": {
     "python": "3.12.16",
@@ -21,7 +21,7 @@
     "transformers": "4.47.1",
     "torch": "2.2.2"
   },
-  "created_utc": "2026-11-23T06:21:14.758322+00:00",
+  "created_utc": "2026-11-23T07:31:36.719739+00:00",
   "models": [
     "combined_xgb",
     "combined_rf",

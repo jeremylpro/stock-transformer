@@ -10,9 +10,9 @@
     "trade_on_close": false
   },
   "period": {
-    "start": "2024-08-06",
-    "end": "2025-06-27",
-    "n_test_rows": 896
+    "start": "2026-09-16",
+    "end": "2026-11-19",
+    "n_test_rows": 188
   },
   "n_tickers": 4,
   "n_long_days": 0,
@@ -31,14 +31,14 @@
     "max_drawdown": 0.0
   },
   "buy_and_hold_gross": {
-    "cumulative_return": 0.1819796821131039,
-    "annualized_sharpe": 0.8417843111332383,
-    "max_drawdown": -0.2648273069407261
+    "cumulative_return": -0.056563689301312614,
+    "annualized_sharpe": -1.1308819784179143,
+    "max_drawdown": -0.09925305270934803
   },
   "buy_and_hold_net": {
-    "cumulative_return": 0.1819796821131039,
-    "annualized_sharpe": 0.8417843111332284,
-    "max_drawdown": -0.2648273069407261
+    "cumulative_return": -0.056563689301312614,
+    "annualized_sharpe": -1.1308819784179092,
+    "max_drawdown": -0.09925305270934803
   },
   "per_ticker": {
     "AAPL": {
@@ -56,9 +56,9 @@
         "max_drawdown": 0.0
       },
       "buy_and_hold": {
-        "cumulative_return": -0.015006954744290701,
-        "annualized_sharpe": 0.10871721148337654,
-        "max_drawdown": -0.3336051063073737
+        "cumulative_return": 0.03464801615911939,
+        "annualized_sharpe": 0.9345062738757686,
+        "max_drawdown": -0.04875186913486862
       }
     },
     "AMZN": {
@@ -76,9 +76,9 @@
         "max_drawdown": 0.0
       },
       "buy_and_hold": {
-        "cumulative_return": 0.3625015126593836,
-        "annualized_sharpe": 1.186173830557306,
-        "max_drawdown": -0.3087663843187607
+        "cumulative_return": -0.00644066845068747,
+        "annualized_sharpe": 0.08300257286916549,
+        "max_drawdown": -0.08878793600806156
       }
     },
     "GOOGL": {
@@ -96,9 +96,9 @@
         "max_drawdown": 0.0
       },
       "buy_and_hold": {
-        "cumulative_return": 0.11198531646753485,
-        "annualized_sharpe": 0.5302855304324805,
-        "max_drawdown": -0.29805868470807684
+        "cumulative_return": -0.2309988982073644,
+        "annualized_sharpe": -3.3821433275333783,
+        "max_drawdown": -0.2526410467571387
       }
     },
     "MSFT": {
@@ -116,9 +116,9 @@
         "max_drawdown": 0.0
       },
       "buy_and_hold": {
-        "cumulative_return": 0.2684388540697875,
-        "annualized_sharpe": 1.1697657583739578,
-        "max_drawdown": -0.21825702729834462
+        "cumulative_return": -0.023463206706317963,
+        "annualized_sharpe": -0.2748072177849616,
+        "max_drawdown": -0.12656356760670162
       }
     }
   }

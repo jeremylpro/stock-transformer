@@ -57,7 +57,9 @@ def _load_finbert(model_name: str):
     tokenizer = AutoTokenizer.from_pretrained(model_name)
     model = AutoModelForSequenceClassification.from_pretrained(model_name)
     model.eval()
-    torch.set_num_threads(max(1, min(4, torch.get_num_threads())))
+    # The target machine has more cores than the original cap; 8 threads is
+    # roughly the throughput sweet spot without oversubscribing the CPU.
+    torch.set_num_threads(max(1, min(8, torch.get_num_threads())))
     _FINBERT_CACHE[model_name] = (tokenizer, model)
     return tokenizer, model
 

@@ -1,18 +1,18 @@
 {
   "train": {
-    "start": "2021-01-04",
-    "end": "2023-09-08"
+    "start": "2025-12-01",
+    "end": "2026-07-02"
   },
   "validation": {
-    "start": "2023-09-12",
-    "end": "2024-08-02"
+    "start": "2026-07-07",
+    "end": "2026-09-14"
   },
   "test": {
-    "start": "2024-08-06",
-    "end": "2025-06-27"
+    "start": "2026-09-16",
+    "end": "2026-11-19"
   },
-  "n_train_dates": 675,
-  "n_val_dates": 225,
-  "n_test_dates": 224,
+  "n_train_dates": 147,
+  "n_val_dates": 49,
+  "n_test_dates": 47,
   "embargo_days": 1
 }

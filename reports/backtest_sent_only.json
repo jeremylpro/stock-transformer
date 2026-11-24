@@ -10,278 +10,115 @@
     "trade_on_close": false
   },
   "period": {
-    "start": "2024-08-06",
-    "end": "2025-06-27",
-    "n_test_rows": 896
+    "start": "2026-09-16",
+    "end": "2026-11-19",
+    "n_test_rows": 188
   },
   "n_tickers": 4,
-  "n_long_days": 18,
-  "hit_rate": 0.5555555555555556,
-  "n_trades": 18,
-  "n_position_changes": 36,
-  "trades": [
-    {
-      "entry_time": "2024-12-04 00:00:00",
-      "exit_time": "2024-12-05 00:00:00",
-      "entry_price": 240.93713407118415,
-      "exit_price": 242.04822551705308,
-      "pnl": 459.9918585897397,
-      "return_pct": 0.0046115408907481115,
-      "ticker": "AAPL"
-    },
-    {
-      "entry_time": "2024-12-09 00:00:00",
-      "exit_time": "2024-12-10 00:00:00",
-      "entry_price": 239.90542717957672,
-      "exit_price": 244.92510965383516,
-      "pnl": 2088.1879092915133,
-      "return_pct": 0.0209235886543786,
-      "ticker": "AAPL"
-    },
-    {
-      "entry_time": "2025-01-24 00:00:00",
-      "exit_time": "2025-01-27 00:00:00",
-      "entry_price": 222.99108678081464,
-      "exit_price": 222.23712143327327,
-      "pnl": -343.80819847886346,
-      "return_pct": -0.003381145670106833,
-      "ticker": "AAPL"
-    },
-    {
-      "entry_time": "2025-02-14 00:00:00",
-      "exit_time": "2025-02-18 00:00:00",
-      "entry_price": 239.59315170779283,
-      "exit_price": 242.47322130490625,
-      "pnl": 1215.3893699818627,
-      "return_pct": 0.01202066743804897,
-      "ticker": "AAPL"
-    },
-    {
-      "entry_time": "2025-03-24 00:00:00",
-      "exit_time": "2025-03-25 00:00:00",
-      "entry_price": 219.4822307654606,
-      "exit_price": 219.25380337198666,
-      "pnl": -105.99031057190632,
-      "return_pct": -0.0010407557490065278,
-      "ticker": "AAPL"
-    },
-    {
-      "entry_time": "2025-06-16 00:00:00",
-      "exit_time": "2025-06-17 00:00:00",
-      "entry_price": 196.20194248978657,
-      "exit_price": 196.10247809394042,
-      "pnl": -51.522557048308386,
-      "return_pct": -0.000506949088189268,
-      "ticker": "AAPL"
-    },
-    {
-      "entry_time": "2024-08-15 00:00:00",
-      "exit_time": "2024-08-16 00:00:00",
-      "entry_price": 174.86000061035156,
-      "exit_price": 177.0399932861328,
-      "pnl": 1244.7758178710938,
-      "return_pct": 0.012467074620679197,
-      "ticker": "AMZN"
-    },
-    {
-      "entry_time": "2025-01-29 00:00:00",
-      "exit_time": "2025-01-30 00:00:00",
-      "entry_price": 239.02000427246094,
-      "exit_price": 237.13999938964844,
-      "pnl": -791.4820556640625,
-      "return_pct": -0.007865470877782554,
-      "ticker": "AMZN"
-    },
-    {
-      "entry_time": "2025-02-03 00:00:00",
-      "exit_time": "2025-02-04 00:00:00",
-      "entry_price": 234.05999755859375,
-      "exit_price": 239.00999450683594,
-      "pnl": 2103.7487030029297,
-      "return_pct": 0.021148410663394124,
-      "ticker": "AMZN"
-    },
-    {
-      "entry_time": "2025-04-04 00:00:00",
-      "exit_time": "2025-04-07 00:00:00",
-      "entry_price": 167.14999389648438,
-      "exit_price": 162.0,
-      "pnl": -3126.0462951660156,
-      "return_pct": -0.030810613727415115,
-      "ticker": "AMZN"
-    },
-    {
-      "entry_time": "2025-05-05 00:00:00",
-      "exit_time": "2025-05-06 00:00:00",
-      "entry_price": 186.50999450683594,
-      "exit_price": 184.57000732421875,
-      "pnl": -1018.4932708740234,
-      "return_pct": -0.010401518630392181,
-      "ticker": "AMZN"
-    },
-    {
-      "entry_time": "2024-12-06 00:00:00",
-      "exit_time": "2024-12-09 00:00:00",
-      "entry_price": 170.83040986678466,
-      "exit_price": 172.9449339559485,
-      "pnl": 1234.8820680716806,
-      "return_pct": 0.012377913808277796,
-      "ticker": "GOOGL"
-    },
-    {
-      "entry_time": "2024-12-11 00:00:00",
-      "exit_time": "2024-12-12 00:00:00",
-      "entry_price": 184.22869140717978,
-      "exit_price": 193.86215946833025,
-      "pnl": 5269.507029449305,
-      "return_pct": 0.05229081305179939,
-      "ticker": "GOOGL"
-    },
-    {
-      "entry_time": "2025-06-16 00:00:00",
-      "exit_time": "2025-06-17 00:00:00",
-      "entry_price": 174.12103189678987,
-      "exit_price": 175.08766326949169,
-      "pnl": 586.7452432299999,
-      "return_pct": 0.005551491179278001,
-      "ticker": "GOOGL"
-    },
-    {
-      "entry_time": "2024-10-18 00:00:00",
-      "exit_time": "2024-10-21 00:00:00",
-      "entry_price": 409.8611515170741,
-      "exit_price": 408.8589460165331,
-      "pnl": -243.53593663147223,
-      "return_pct": -0.002445231749414245,
-      "ticker": "MSFT"
-    },
-    {
-      "entry_time": "2024-10-31 00:00:00",
-      "exit_time": "2024-11-01 00:00:00",
-      "entry_price": 408.11222136764104,
-      "exit_price": 401.87306552872167,
-      "pnl": -1516.1148688574076,
-      "return_pct": -0.015287843667143974,
-      "ticker": "MSFT"
-    },
-    {
-      "entry_time": "2025-04-14 00:00:00",
-      "exit_time": "2025-04-15 00:00:00",
-      "entry_price": 387.90818106568054,
-      "exit_price": 383.2617623638738,
-      "pnl": -1166.251094153491,
-      "return_pct": -0.011978140520372271,
-      "ticker": "MSFT"
-    },
-    {
-      "entry_time": "2025-04-28 00:00:00",
-      "exit_time": "2025-04-29 00:00:00",
-      "entry_price": 386.6651882140732,
-      "exit_price": 386.0140949876373,
-      "pnl": -161.47112015611128,
-      "return_pct": -0.0016838682309188169,
-      "ticker": "MSFT"
-    }
-  ],
+  "n_long_days": 0,
+  "hit_rate": null,
+  "n_trades": 0,
+  "n_position_changes": 0,
+  "trades": [],
   "gross": {
-    "cumulative_return": 0.014184773134183759,
-    "annualized_sharpe": 0.6372192649230776,
-    "max_drawdown": -0.019102887453292472
+    "cumulative_return": 0.0,
+    "annualized_sharpe": 0.0,
+    "max_drawdown": 0.0
   },
   "net": {
-    "cumulative_return": 0.0006495314416001818,
-    "annualized_sharpe": 0.041500244024301323,
-    "max_drawdown": -0.021786024009286642
+    "cumulative_return": 0.0,
+    "annualized_sharpe": 0.0,
+    "max_drawdown": 0.0
   },
   "buy_and_hold_gross": {
-    "cumulative_return": 0.1819796821131039,
-    "annualized_sharpe": 0.8417843111332383,
-    "max_drawdown": -0.2648273069407261
+    "cumulative_return": -0.056563689301312614,
+    "annualized_sharpe": -1.1308819784179143,
+    "max_drawdown": -0.09925305270934803
   },
   "buy_and_hold_net": {
-    "cumulative_return": 0.1819796821131039,
-    "annualized_sharpe": 0.8417843111332284,
-    "max_drawdown": -0.2648273069407261
+    "cumulative_return": -0.056563689301312614,
+    "annualized_sharpe": -1.1308819784179092,
+    "max_drawdown": -0.09925305270934803
   },
   "per_ticker": {
     "AAPL": {
-      "n_signals": 6,
-      "hit_rate": 0.8333333333333334,
-      "n_trades": 6,
+      "n_signals": 0,
+      "hit_rate": null,
+      "n_trades": 0,
       "net": {
-        "cumulative_return": 0.014399149853869808,
-        "annualized_sharpe": 0.5720048360344242,
-        "max_drawdown": -0.011292972230574017
+        "cumulative_return": 0.0,
+        "annualized_sharpe": 0.0,
+        "max_drawdown": 0.0
       },
       "gross": {
-        "cumulative_return": 0.03280262203583151,
-        "annualized_sharpe": 1.218887867236545,
-        "max_drawdown": -0.00887968060501132
+        "cumulative_return": 0.0,
+        "annualized_sharpe": 0.0,
+        "max_drawdown": 0.0
       },
       "buy_and_hold": {
-        "cumulative_return": -0.015006954744290701,
-        "annualized_sharpe": 0.10871721148337654,
-        "max_drawdown": -0.3336051063073737
+        "cumulative_return": 0.03464801615911939,
+        "annualized_sharpe": 0.9345062738757686,
+        "max_drawdown": -0.04875186913486862
       }
     },
     "AMZN": {
-      "n_signals": 5,
-      "hit_rate": 0.2,
-      "n_trades": 5,
+      "n_signals": 0,
+      "hit_rate": null,
+      "n_trades": 0,
       "net": {
-        "cumulative_return": -0.030830931787414584,
-        "annualized_sharpe": -0.4879599143241222,
-        "max_drawdown": -0.06665393530649721
+        "cumulative_return": 0.0,
+        "annualized_sharpe": 0.0,
+        "max_drawdown": 0.0
       },
       "gross": {
-        "cumulative_return": -0.016178769836425744,
-        "annualized_sharpe": -0.23993437172842394,
-        "max_drawdown": -0.06243035714480638
+        "cumulative_return": 0.0,
+        "annualized_sharpe": 0.0,
+        "max_drawdown": 0.0
       },
       "buy_and_hold": {
-        "cumulative_return": 0.3625015126593836,
-        "annualized_sharpe": 1.186173830557306,
-        "max_drawdown": -0.3087663843187607
+        "cumulative_return": -0.00644066845068747,
+        "annualized_sharpe": 0.08300257286916549,
+        "max_drawdown": -0.08878793600806156
       }
     },
     "GOOGL": {
-      "n_signals": 3,
-      "hit_rate": 1.0,
-      "n_trades": 3,
+      "n_signals": 0,
+      "hit_rate": null,
+      "n_trades": 0,
       "net": {
-        "cumulative_return": 0.06161809079470015,
-        "annualized_sharpe": 1.1505080458966745,
-        "max_drawdown": -0.007540930251790368
+        "cumulative_return": 0.0,
+        "annualized_sharpe": 0.0,
+        "max_drawdown": 0.0
       },
       "gross": {
-        "cumulative_return": 0.07116382326453241,
-        "annualized_sharpe": 1.2810539002756005,
-        "max_drawdown": -0.006045302442911127
+        "cumulative_return": 0.0,
+        "annualized_sharpe": 0.0,
+        "max_drawdown": 0.0
       },
       "buy_and_hold": {
-        "cumulative_return": 0.11198531646753485,
-        "annualized_sharpe": 0.5302855304324805,
-        "max_drawdown": -0.29805868470807684
+        "cumulative_return": -0.2309988982073644,
+        "annualized_sharpe": -3.3821433275333783,
+        "max_drawdown": -0.2526410467571387
       }
     },
     "MSFT": {
-      "n_signals": 4,
-      "hit_rate": 0.25,
-      "n_trades": 4,
+      "n_signals": 0,
+      "hit_rate": null,
+      "n_trades": 0,
       "net": {
-        "cumulative_return": -0.04258818309475454,
-        "annualized_sharpe": -1.5715198260791903,
-        "max_drawdown": -0.04348862345795146
+        "cumulative_return": 0.0,
+        "annualized_sharpe": 0.0,
+        "max_drawdown": 0.0
       },
       "gross": {
-        "cumulative_return": -0.03104858292720314,
-        "annualized_sharpe": -1.2153937590711135,
-        "max_drawdown": -0.03374831906486986
+        "cumulative_return": 0.0,
+        "annualized_sharpe": 0.0,
+        "max_drawdown": 0.0
       },
       "buy_and_hold": {
-        "cumulative_return": 0.2684388540697875,
-        "annualized_sharpe": 1.1697657583739578,
-        "max_drawdown": -0.21825702729834462
+        "cumulative_return": -0.023463206706317963,
+        "annualized_sharpe": -0.2748072177849616,
+        "max_drawdown": -0.12656356760670162
       }
     }
   }

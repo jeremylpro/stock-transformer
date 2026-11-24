@@ -154,6 +154,12 @@ def build_summary(
         f"News source: `{meta.get('news_source', 'unknown')}` | "
         f"Sentiment backend: `{meta.get('sentiment_backend', 'unknown')}`"
     )
+    date_range = meta.get("date_range", {})
+    lines.append(
+        f"Config: `{meta.get('config_path', 'unknown')}` | "
+        f"Requested range: {date_range.get('start', 'unknown')}.."
+        f"{date_range.get('end', 'unknown')}"
+    )
     lines.append("")
     if is_demo:
         lines.append("> **OFFLINE / DEMO DATA WARNING.** At least one input comes from a "

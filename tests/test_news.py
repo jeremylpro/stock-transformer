@@ -64,3 +64,25 @@ def test_news_accepts_epoch_seconds():
     )
     out = validate_news(news)
     assert out.loc[0, "published_utc"] == pd.Timestamp("2024-01-02 14:00", tz="UTC")
+
+
+def test_scrub_secret_hides_api_token():
+    from src.data_news import _scrub_secret
+
+    text = "HTTPSConnectionPool: /company-news?symbol=AAPL&token=secret123&from=2024-01-01"
+    scrubbed = _scrub_secret(text)
+    assert "secret123" not in scrubbed
+    assert "token=***" in scrubbed
+
+
+def test_news_chunks_stay_under_provider_result_cap():
+    from datetime import date
+
+    from src.data_news import NEWS_CHUNK_DAYS, _date_chunks
+
+    chunks = list(_date_chunks(date(2026, 1, 1), date(2026, 3, 15)))
+    assert chunks[0] == (date(2026, 1, 1), date(2026, 1, 7))
+    assert chunks[-1][1] == date(2026, 3, 15)
+    assert all((b - a).days + 1 <= NEWS_CHUNK_DAYS for a, b in chunks)
+    for (_, prev_end), (next_start, _) in zip(chunks, chunks[1:]):
+        assert (next_start - prev_end).days == 1
