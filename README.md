@@ -301,4 +301,7 @@ tests/fixtures/                 deterministic leakage and smoke datasets
 scripts/generate_fixtures.py    regenerate test fixtures
 scripts/generate_demo_news.py   synthetic demo headlines
 notebooks/                      exploration notebooks
+notebooks/04_colab_kaggle_training.ipynb   full run on a Colab/Kaggle GPU
+requirements-colab.txt          Linux/GPU dependency pins for the notebook
+docs/colab_kaggle.md            Colab/Kaggle setup, runtime and troubleshooting
 ```
