@@ -21,8 +21,20 @@ SENTIMENT_COLUMNS = [
     "sent_score",
 ]
 
-_FINBERT_CACHE: dict[str, tuple[object, object]] = {}
+_FINBERT_CACHE: dict[str, tuple[object, object, object]] = {}
 _VADER = None
+
+
+def _select_device() -> object:
+    """Prefer CUDA, then Apple MPS, then CPU."""
+    import torch
+
+    if torch.cuda.is_available():
+        return torch.device("cuda")
+    mps = getattr(torch.backends, "mps", None)
+    if mps is not None and mps.is_available():
+        return torch.device("mps")
+    return torch.device("cpu")
 
 
 def vader_scores(headlines: list[str]) -> pd.DataFrame:
@@ -53,15 +65,18 @@ def _load_finbert(model_name: str):
     import torch
     from transformers import AutoModelForSequenceClassification, AutoTokenizer
 
-    LOG.info("Loading FinBERT model %s (CPU)", model_name)
+    device = _select_device()
+    LOG.info("Loading FinBERT model %s (%s)", model_name, device)
     tokenizer = AutoTokenizer.from_pretrained(model_name)
     model = AutoModelForSequenceClassification.from_pretrained(model_name)
+    model.to(device)
     model.eval()
-    # The target machine has more cores than the original cap; 8 threads is
-    # roughly the throughput sweet spot without oversubscribing the CPU.
-    torch.set_num_threads(max(1, min(8, torch.get_num_threads())))
-    _FINBERT_CACHE[model_name] = (tokenizer, model)
-    return tokenizer, model
+    if device.type == "cpu":
+        # The target machine has more cores than the original cap; 8 threads is
+        # roughly the throughput sweet spot without oversubscribing the CPU.
+        torch.set_num_threads(max(1, min(8, torch.get_num_threads())))
+    _FINBERT_CACHE[model_name] = (tokenizer, model, device)
+    return tokenizer, model, device
 
 
 def finbert_scores(
@@ -78,7 +93,7 @@ def finbert_scores(
     """
     import torch
 
-    tokenizer, model = _load_finbert(model_name)
+    tokenizer, model, device = _load_finbert(model_name)
     id2label = {int(k): str(v).lower() for k, v in model.config.id2label.items()}
 
     rows: list[dict[str, float | int]] = []
@@ -92,6 +107,7 @@ def finbert_scores(
                 max_length=max_tokens,
                 return_tensors="pt",
             )
+            encoded = {key: value.to(device) for key, value in encoded.items()}
             logits = model(**encoded).logits
             probs = torch.softmax(logits, dim=1).cpu().numpy()
             for offset, prob in enumerate(probs):

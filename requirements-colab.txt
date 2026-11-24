@@ -1,0 +1,23 @@
+# Linux GPU environment for Google Colab / Kaggle.
+# The notebook installs this into an isolated venv so the runtime's preinstalled
+# packages cannot conflict with the project.
+#
+# torch 2.2.2 Linux wheels bundle CUDA 12.1 and work on Colab/Kaggle T4/P100
+# GPUs. On a CPU-only runtime the same wheel still runs on CPU.
+pandas==2.2.0
+numpy==1.26.3
+yfinance==1.8.0
+requests==2.34.2
+python-dotenv==1.0.1
+ta==0.11.0
+transformers==4.47.1
+torch==2.2.2
+vaderSentiment==3.3.2
+scikit-learn==1.4.0
+xgboost==2.0.3
+backtesting==0.6.0
+pyyaml==6.0.1
+pytest==8.0.0
+matplotlib==3.8.2
+pyarrow==15.0.0
+tzdata==2026.6

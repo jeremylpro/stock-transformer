@@ -47,7 +47,7 @@ This implementation follows `docs/product-design.md` and
 - **Report** (`src/reporting.py`): `reports/summary.md`, metrics JSON, split
   ranges, top-15 importances, net-of-cost backtest table and known limitations.
 
-All 48 tests in `tests/` pass, including the leakage suite from §10.
+All 56 tests in `tests/` pass, including the leakage suite from §10.
 
 ---
 
@@ -193,6 +193,14 @@ This is a small, recent, single-split sample, so the AUC estimates are noisy.
 The synthetic demo (`config.demo.yaml`) remains available for offline plumbing
 tests and is clearly marked with an `OFFLINE / DEMO DATA WARNING`.
 
+### Cloud training (Google Colab / Kaggle)
+
+`notebooks/04_colab_kaggle_training.ipynb` runs the full pipeline on a fresh
+Linux GPU runtime, using `requirements-colab.txt` and Colab/Kaggle secrets for
+the Finnhub key. FinBERT automatically uses CUDA when available. See
+`docs/colab_kaggle.md` for setup, runtime estimates, resuming and
+troubleshooting.
+
 ---
 
 ## Leakage guardrails
@@ -288,7 +296,7 @@ src/
   backtest.py                   next-bar-open long/cash backtest
   reporting.py                  summary.md and plots
   pipeline.py                   stage orchestration and manifests
-tests/                          48 unit/integration/leakage tests
+tests/                          56 unit/integration/leakage/notebook tests
 tests/fixtures/                 deterministic leakage and smoke datasets
 scripts/generate_fixtures.py    regenerate test fixtures
 scripts/generate_demo_news.py   synthetic demo headlines

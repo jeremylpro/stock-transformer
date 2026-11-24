@@ -74,3 +74,13 @@ def test_score_headlines_empty():
     out = score_headlines([], backend="vader")
     assert out.empty
     assert "sent_score" in out.columns
+
+
+def test_select_device_returns_a_torch_device():
+    import torch
+
+    from src.sentiment import _select_device
+
+    device = _select_device()
+    assert isinstance(device, torch.device)
+    assert device.type in {"cpu", "cuda", "mps"}
